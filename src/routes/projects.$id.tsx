@@ -10,64 +10,52 @@ import { ProjectDetailSkeleton } from "@/components/ui/Skeletons";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { IMAGE_SIZES } from "@/lib/image";
 import { useI18n } from "@/lib/i18n";
+import { pageSeo } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/projects/$id")({
   head: ({ params }) => {
     const project = projects.find((p) => p.id === params.id);
-    const title = `${project?.title || "Project"} | Marketplace Systems Architect`;
-    const description = project?.description || "Project details";
-    return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: `/projects/${params.id}` },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: description },
-      ],
-      links: [{ rel: "canonical", href: `/projects/${params.id}` }],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CreativeWork",
-            name: project?.title || "Project",
-            description,
-            url: `/projects/${params.id}`,
-            creator: { "@type": "Person", name: "Mostafa Samir" },
-          }),
-        },
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-              { "@type": "ListItem", position: 2, name: "Projects", item: "/projects" },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: project?.title || "Project",
-                item: `/projects/${params.id}`,
-              },
-            ],
-          }),
-        },
-      ],
-    };
+    const title = `${project?.title ?? "Project"} | Marketplace Systems Architect`;
+    const description = project?.description ?? "Project details";
+    const path = `/projects/${params.id}`;
 
+    return pageSeo({
+      title,
+      description,
+      path,
+      type: "article",
+      jsonLd: [
+        {
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          name: project?.title ?? "Project",
+          description,
+          url: absoluteUrl(path),
+          creator: { "@type": "Person", name: "Mostafa Samir" },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "Projects", item: absoluteUrl("/projects") },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: project?.title ?? "Project",
+              item: absoluteUrl(path),
+            },
+          ],
+        },
+      ],
+    });
   },
-
   component: ProjectDetail,
   pendingComponent: ProjectDetailSkeleton,
 });
 
-export function ProjectDetail() {
+function ProjectDetail() {
   const { id } = Route.useParams();
   const { tr } = useI18n();
   const project = projects.find((p) => p.id === id);

@@ -10,6 +10,8 @@ import { Search, ChevronLeft, ChevronRight, LayoutGrid, Rows3, X, ArrowUpDown } 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useI18n } from "@/lib/i18n";
+import { pageSeo } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 import { useLocalizedContent } from "@/lib/localize";
 import {
   Select,
@@ -19,47 +21,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+const PROJECTS_DESCRIPTION =
+  "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems, with search, filters and sorting.";
+
 export const Route = createFileRoute("/projects/")({
-  head: () => ({
-    meta: [
-      { title: "All Projects | Marketplace Systems Architect" },
-      {
-        name: "description",
-        content:
-          "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems, with search, filters and sorting.",
-      },
-      { property: "og:title", content: "All Projects | Marketplace Systems Architect" },
-      {
-        property: "og:description",
-        content:
-          "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/projects" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "All Projects | Marketplace Systems Architect" },
-      {
-        name: "twitter:description",
-        content:
-          "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "/projects" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
+  head: () =>
+    pageSeo({
+      title: "All Projects | Marketplace Systems Architect",
+      description: PROJECTS_DESCRIPTION,
+      path: "/projects",
+      jsonLd: [
+        {
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: "All Projects",
-          description:
-            "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems.",
-          url: "/projects",
-        }),
-      },
-    ],
-  }),
-
+          description: PROJECTS_DESCRIPTION,
+          url: absoluteUrl("/projects"),
+        },
+      ],
+    }),
   component: ProjectsPage,
   pendingComponent: PageSkeleton,
 });
@@ -74,7 +54,7 @@ const SORTS = [
 
 type SortValue = (typeof SORTS)[number]["value"];
 
-export function ProjectsPage() {
+function ProjectsPage() {
   const { tr } = useI18n();
   const { category: trCategory } = useLocalizedContent();
   const reduce = useReducedMotion();
