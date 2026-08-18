@@ -14,6 +14,7 @@ import {
 import { TechStack } from "@/components/ui/TechStack";
 import { Badge } from "@/components/ui/ProjectCard";
 import { PageShell } from "@/components/layout/PageShell";
+import { CtaLink } from "@/components/ui/CtaLink";
 import { ProjectDetailSkeleton } from "@/components/ui/Skeletons";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { IMAGE_SIZES } from "@/lib/image";
@@ -82,13 +83,10 @@ function ProjectNotFound() {
         <h1 className="mb-4 font-display text-4xl font-bold text-foreground">
           {tr("project.notFound.title")}
         </h1>
-        <Link
-          to="/projects"
-          className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-3 font-sans text-xs font-black uppercase tracking-widest text-card-foreground shadow-md transition-transform hover:scale-105"
-        >
+        <CtaLink to="/projects" variant="secondary" withArrow={false}>
           <ArrowLeft className="size-4 rtl:rotate-180" />
           {tr("project.notFound.back")}
-        </Link>
+        </CtaLink>
       </div>
     </PageShell>
   );
