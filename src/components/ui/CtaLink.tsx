@@ -32,7 +32,7 @@ export function CtaLink({
         className as string,
       )}
     >
-      {children}
+      {children as React.ReactNode}
       {withArrow && <ArrowRight className="size-4 rtl:rotate-180" />}
     </Link>
   );
