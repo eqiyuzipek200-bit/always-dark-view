@@ -8,59 +8,46 @@ import { Projects } from "@/components/sections/Projects";
 import { ExperiencePreview } from "@/components/sections/home/ExperiencePreview";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { ContactCta } from "@/components/sections/home/ContactCta";
+import { pageSeo } from "@/lib/seo";
+import { SITE, absoluteUrl } from "@/lib/site";
 import heroIso from "@/assets/hero-iso.webp";
 
+const DESCRIPTION =
+  "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices, React.js and Angular platforms.";
+
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Mostafa Samir | Senior Full Stack Engineer" },
-      {
-        name: "description",
-        content:
-          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices, React.js and Angular platforms.",
-      },
-      { property: "og:title", content: "Mostafa Samir | Senior Full Stack Engineer" },
-      {
-        property: "og:description",
-        content:
-          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices, React.js and Angular platforms.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Mostafa Samir | Senior Full Stack Engineer" },
-      {
-        name: "twitter:description",
-        content:
-          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices, React.js and Angular platforms.",
-      },
-    ],
-    links: [
-      { rel: "canonical", href: "/" },
-      { rel: "preload", as: "image", href: heroIso, fetchPriority: "high" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
+  head: () => {
+    const seo = pageSeo({
+      title: `${SITE.name} | ${SITE.role}`,
+      description: DESCRIPTION,
+      path: "/",
+      jsonLd: [
+        {
           "@context": "https://schema.org",
           "@type": "Person",
-          name: "Mostafa Samir",
-          jobTitle: "Senior Full Stack Engineer",
-          url: "/",
+          name: SITE.name,
+          jobTitle: SITE.role,
+          url: absoluteUrl("/"),
           knowsAbout: [
             ".NET 8 microservices",
             "Next.js",
             "Multi-vendor marketplaces",
             "Real-time bidding systems",
           ],
-        }),
-      },
-    ],
-  }),
+        },
+      ],
+    });
+
+    return {
+      ...seo,
+      links: [
+        ...seo.links,
+        { rel: "preload", as: "image", href: heroIso, fetchPriority: "high" },
+      ],
+    };
+  },
   component: Index,
 });
-
 
 function Index() {
   return (
@@ -70,6 +57,9 @@ function Index() {
         <Hero />
         <Projects />
         <div className="defer-paint">
+          <SkillsPreview />
+        </div>
+        <div className="defer-paint">
           <ExperiencePreview />
         </div>
         <div className="defer-paint">
@@ -77,6 +67,9 @@ function Index() {
         </div>
         <div className="defer-paint">
           <Testimonials />
+        </div>
+        <div className="defer-paint">
+          <ContactCta />
         </div>
       </main>
       <Footer />
