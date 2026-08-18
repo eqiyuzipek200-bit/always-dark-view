@@ -197,11 +197,7 @@ interface ProjectCardImageProps {
   priority?: boolean;
 }
 
-function ProjectCardImage({
-  project,
-  compact = false,
-  priority = false,
-}: ProjectCardImageProps) {
+function ProjectCardImage({ project, compact = false, priority = false }: ProjectCardImageProps) {
   const { category } = useLocalizedContent();
   return (
     <div
