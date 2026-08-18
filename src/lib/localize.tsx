@@ -1,11 +1,5 @@
 import { useI18n } from "@/lib/i18n";
-import {
-  categoryAr,
-  projectAr,
-  projectStatusAr,
-  projectTypeAr,
-  skillGroupAr,
-} from "@/data/ar";
+import { categoryAr, projectAr, projectStatusAr, projectTypeAr, skillGroupAr } from "@/data/ar";
 import type { Project } from "@/data";
 
 /**
