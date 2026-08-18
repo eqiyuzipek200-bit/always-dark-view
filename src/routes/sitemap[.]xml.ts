@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { projects } from "@/data/projects";
+import { projects } from "@/data";
 import { SITE } from "@/lib/site";
 
 const BASE_URL = SITE.url;
