@@ -7,7 +7,7 @@ function Bar({ className = "" }: { className?: string }) {
   return <div className={`skeleton-shimmer rounded-md ${className}`} />;
 }
 
-export function ProjectCardSkeleton({ compact = false }: { compact?: boolean }) {
+function ProjectCardSkeleton({ compact = false }: { compact?: boolean }) {
   return (
     <div className="glass flex h-full flex-col overflow-hidden rounded-2xl">
       <div className={`skeleton-shimmer ${compact ? "h-36" : "h-48"}`} />
@@ -38,7 +38,7 @@ export function ProjectCardSkeleton({ compact = false }: { compact?: boolean }) 
   );
 }
 
-export function ProjectRowSkeleton() {
+function ProjectRowSkeleton() {
   return (
     <div className="glass grid grid-cols-1 gap-5 rounded-2xl p-4 sm:grid-cols-[220px_minmax(0,1fr)] sm:items-center">
       <div className="skeleton-shimmer h-36 rounded-2xl" />

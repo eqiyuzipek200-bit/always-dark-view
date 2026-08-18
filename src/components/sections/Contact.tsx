@@ -24,8 +24,10 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (_values: FormValues) => {
-    await new Promise((r) => setTimeout(r, 600));
+  const onSubmit = async (values: FormValues) => {
+    const subject = encodeURIComponent(`Portfolio enquiry from ${values.name}`);
+    const body = encodeURIComponent(`${values.message}\n\nFrom: ${values.name}\nEmail: ${values.email}`);
+    window.location.href = `mailto:m.ssaid356@gmail.com?subject=${subject}&body=${body}`;
     toast.success(tr("contact.success"));
     reset();
   };
@@ -47,37 +49,63 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
             className="rounded-2xl bg-card border border-border shadow-[var(--shadow-glow)] space-y-5 p-7"
           >
             <div>
-              <label className="mb-2 block text-sm font-medium text-card-foreground">
+              <label htmlFor="contact-name" className="mb-2 block text-sm font-medium text-card-foreground">
                 {tr("contact.name")}
               </label>
-              <input {...register("name")} className={fieldClass} placeholder="Jane Doe" />
+              <input
+                id="contact-name"
+                autoComplete="name"
+                aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? "contact-name-error" : undefined}
+                {...register("name")}
+                className={fieldClass}
+                placeholder="Jane Doe"
+              />
               {errors.name && (
-                <p className="mt-1.5 text-sm text-destructive">{errors.name.message}</p>
+                <p id="contact-name-error" role="alert" className="mt-1.5 text-sm text-destructive">
+                  {errors.name.message}
+                </p>
               )}
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-card-foreground">
+              <label htmlFor="contact-email" className="mb-2 block text-sm font-medium text-card-foreground">
                 {tr("contact.email")}
               </label>
-              <input {...register("email")} className={fieldClass} placeholder="jane@company.com" />
+              <input
+                id="contact-email"
+                type="email"
+                autoComplete="email"
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "contact-email-error" : undefined}
+                {...register("email")}
+                className={fieldClass}
+                placeholder="jane@company.com"
+              />
               {errors.email && (
-                <p className="mt-1.5 text-sm text-destructive">{errors.email.message}</p>
+                <p id="contact-email-error" role="alert" className="mt-1.5 text-sm text-destructive">
+                  {errors.email.message}
+                </p>
               )}
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-card-foreground">
+              <label htmlFor="contact-message" className="mb-2 block text-sm font-medium text-card-foreground">
                 {tr("contact.message")}
               </label>
               <textarea
+                id="contact-message"
+                aria-invalid={Boolean(errors.message)}
+                aria-describedby={errors.message ? "contact-message-error" : undefined}
                 {...register("message")}
                 rows={5}
                 className={`${fieldClass} resize-none`}
                 placeholder="Tell me about your marketplace..."
               />
               {errors.message && (
-                <p className="mt-1.5 text-sm text-destructive">{errors.message.message}</p>
+                <p id="contact-message-error" role="alert" className="mt-1.5 text-sm text-destructive">
+                  {errors.message.message}
+                </p>
               )}
             </div>
 

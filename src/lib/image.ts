@@ -32,7 +32,7 @@ const RESPONSIVE_BASES = new Set([
   "/projects/react/ohanna",
 ]);
 
-export interface ResolvedImage {
+interface ResolvedImage {
   src: string;
   srcSet?: string;
 }

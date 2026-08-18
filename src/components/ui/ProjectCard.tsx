@@ -197,7 +197,7 @@ interface ProjectCardImageProps {
   priority?: boolean;
 }
 
-export function ProjectCardImage({
+function ProjectCardImage({
   project,
   compact = false,
   priority = false,
@@ -231,7 +231,7 @@ interface TechStackPreviewProps {
   limit?: number;
 }
 
-export function TechStackPreview({ techs, limit = 3 }: TechStackPreviewProps) {
+function TechStackPreview({ techs, limit = 3 }: TechStackPreviewProps) {
   return (
     <div className="flex flex-wrap gap-2">
       {techs.slice(0, limit).map((tech) => (
