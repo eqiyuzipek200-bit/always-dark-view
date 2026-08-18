@@ -210,7 +210,9 @@ export function ExperiencePreview() {
                     {open && (
                       <motion.div
                         key="detail"
-                        initial={reduce ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+                        initial={
+                          reduce ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }
+                        }
                         animate={{ height: "auto", opacity: 1 }}
                         exit={reduce ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }}
                         transition={reduce ? { duration: 0 } : { duration: 0.35, ease: EASE }}

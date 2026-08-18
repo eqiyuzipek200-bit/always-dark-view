@@ -22,9 +22,7 @@ const AUTOPLAY_MS = 7000;
 /** Groups of 3 credentials → one carousel slide each. */
 function useSlides() {
   return useMemo(() => {
-    const items = credentials.filter(
-      (c) => c.tab === "certifications" || c.tab === "education",
-    );
+    const items = credentials.filter((c) => c.tab === "certifications" || c.tab === "education");
     const slides: CredentialItem[][] = [];
     for (let i = 0; i < items.length; i += 3) slides.push(items.slice(i, i + 3));
     return slides.slice(0, 3);
@@ -183,9 +181,7 @@ export function Testimonials() {
                   lang={lang}
                   reduce={!!reduce}
                   open={openId === featured.id}
-                  onToggle={() =>
-                    setOpenId((o) => (o === featured.id ? null : featured.id))
-                  }
+                  onToggle={() => setOpenId((o) => (o === featured.id ? null : featured.id))}
                   detailsLabel={tr("awards.learnMore")}
                   index={0}
                 />
@@ -194,13 +190,7 @@ export function Testimonials() {
               {/* Side cards */}
               <div className="flex flex-col gap-5">
                 {side.map((item, i) => (
-                  <SideCard
-                    key={item.id}
-                    item={item}
-                    lang={lang}
-                    reduce={!!reduce}
-                    index={i + 1}
-                  />
+                  <SideCard key={item.id} item={item} lang={lang} reduce={!!reduce} index={i + 1} />
                 ))}
               </div>
             </motion.div>
@@ -294,7 +284,9 @@ function FeaturedCard({
             <motion.ul
               initial="hidden"
               animate="show"
-              variants={{ show: { transition: { staggerChildren: reduce ? 0 : 0.05, delayChildren: 0.1 } } }}
+              variants={{
+                show: { transition: { staggerChildren: reduce ? 0 : 0.05, delayChildren: 0.1 } },
+              }}
               className="mt-6 space-y-2 text-start"
             >
               {item.highlights[lang].map((h) => (

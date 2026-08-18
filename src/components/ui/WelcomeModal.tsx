@@ -110,9 +110,7 @@ export function WelcomeModal() {
             {tr("welcome.body")}
           </p>
 
-          <p className="mt-4 text-sm font-semibold text-accent">
-            {tr("welcome.highlight")}
-          </p>
+          <p className="mt-4 text-sm font-semibold text-accent">{tr("welcome.highlight")}</p>
 
           <div className="mt-8 grid grid-cols-1 gap-3">
             <Link
@@ -132,9 +130,7 @@ export function WelcomeModal() {
             </Link>
           </div>
 
-          <p className="eyebrow mt-6 text-muted-foreground">
-            {tr("welcome.footnote")}
-          </p>
+          <p className="eyebrow mt-6 text-muted-foreground">{tr("welcome.footnote")}</p>
         </div>
       </div>
     </div>

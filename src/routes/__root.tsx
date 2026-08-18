@@ -51,7 +51,6 @@ function ArabicFonts() {
   return null;
 }
 
-
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   // Use error-capture's describeError to properly format error details
   const errorMessage = describeError(error);
@@ -181,6 +180,5 @@ function RootComponent() {
         </I18nProvider>
       </ThemeProvider>
     </QueryClientProvider>
-
   );
 }

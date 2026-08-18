@@ -47,10 +47,7 @@ export function SkillsPreview() {
 
         <Reveal delay={0.3}>
           <div className="mt-10 flex justify-center">
-            <Link
-              to="/skills"
-              className="group btn-accent-outline"
-            >
+            <Link to="/skills" className="group btn-accent-outline">
               Explore the full stack
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 rtl:rotate-180" />
             </Link>

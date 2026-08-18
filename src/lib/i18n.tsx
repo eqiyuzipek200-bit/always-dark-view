@@ -25,12 +25,11 @@ export const t: Dict = {
   "hero.cta": { en: "VIEW MY WORK", ar: "شاهد أعمالي" },
   "hero.cv": { en: "DOWNLOAD CV", ar: "تحميل السيرة" },
 
-
   "about.preview.title1": { en: "4+ Years of", ar: "4+ سنوات من" },
   "about.preview.title2": { en: "Full Stack Excellence", ar: "التميز التقني" },
-  "about.preview.desc": { 
+  "about.preview.desc": {
     en: "Senior Full Stack Engineer specializing in scaling marketplace throughput by 300% using .NET 8, Clean Architecture & Next.js.",
-    ar: "مهندس متكامل أول متخصص في زيادة سعة المنصات بنسبة 300% باستخدام .NET 8 و Clean Architecture و Next.js."
+    ar: "مهندس متكامل أول متخصص في زيادة سعة المنصات بنسبة 300% باستخدام .NET 8 و Clean Architecture و Next.js.",
   },
   "about.preview.cta": { en: "VIEW CASE", ar: "عرض الحالة" },
 
@@ -46,12 +45,15 @@ export const t: Dict = {
   "projects.index.page": { en: "page", ar: "صفحة" },
   "projects.card.details": { en: "View details", ar: "عرض التفاصيل" },
   "projects.index.title": { en: "All Projects", ar: "جميع المشاريع" },
-  "projects.index.desc": { 
-    en: "Marketplaces, .NET 8 microservices, real-time dashboards, and multi-tenant architectures.", 
-    ar: "أسواق رقمية، خدمات مصغرة بـ .NET 8، لوحات تحكم لحظية، وهياكل متعددة المستأجرين." 
+  "projects.index.desc": {
+    en: "Marketplaces, .NET 8 microservices, real-time dashboards, and multi-tenant architectures.",
+    ar: "أسواق رقمية، خدمات مصغرة بـ .NET 8، لوحات تحكم لحظية، وهياكل متعددة المستأجرين.",
   },
   "projects.index.search": { en: "Search projects", ar: "البحث في المشاريع" },
-  "projects.index.searchPlaceholder": { en: "Search by name, tech, client...", ar: "ابحث بالاسم، التقنية، العميل..." },
+  "projects.index.searchPlaceholder": {
+    en: "Search by name, tech, client...",
+    ar: "ابحث بالاسم، التقنية، العميل...",
+  },
   "projects.index.clear": { en: "Clear search", ar: "مسح البحث" },
   "projects.index.sort": { en: "Sort projects", ar: "فرز المشاريع" },
   "projects.index.featured": { en: "Featured", ar: "مميز" },
@@ -73,7 +75,7 @@ export const t: Dict = {
   "project.detail.continue": { en: "Continue Exploring", ar: "واصل الاستكشاف" },
   "project.detail.prev": { en: "PREVIOUS PROJECT", ar: "المشروع السابق" },
   "project.detail.next": { en: "NEXT PROJECT", ar: "المشروع التالي" },
-  
+
   "project.notFound.title": { en: "Project Not Found", ar: "المشروع غير موجود" },
   "project.notFound.back": { en: "Back to Projects", ar: "العودة للمشاريع" },
 
@@ -145,12 +147,18 @@ export const t: Dict = {
   "about.stat.throughput": { en: "Throughput Boost", ar: "زيادة في الأداء" },
   "about.stat.iot": { en: "IoT Endpoints", ar: "نقطة إنترنت أشياء" },
   "about.stat.microservices": { en: "Clean Microservices", ar: "خدمات مصغّرة نظيفة" },
-  "about.principle.1.title": { en: "Clean Architecture & DDD", ar: "المعمارية النظيفة والتصميم المدفوع بالمجال" },
+  "about.principle.1.title": {
+    en: "Clean Architecture & DDD",
+    ar: "المعمارية النظيفة والتصميم المدفوع بالمجال",
+  },
   "about.principle.1.body": {
     en: "Architecting .NET 8 Microservices using Clean Architecture and Domain-Driven Design (DDD) boundaries so platforms scale multi-tenancy seamlessly.",
     ar: "تصميم خدمات مصغّرة بـ .NET 8 وفق المعمارية النظيفة وحدود التصميم المدفوع بالمجال (DDD) لتتوسّع المنصات متعددة المستأجرين بسلاسة.",
   },
-  "about.principle.2.title": { en: "Real-Time Telemetry & SignalR", ar: "البيانات اللحظية و SignalR" },
+  "about.principle.2.title": {
+    en: "Real-Time Telemetry & SignalR",
+    ar: "البيانات اللحظية و SignalR",
+  },
   "about.principle.2.body": {
     en: "High-throughput SignalR and gRPC backend integration layers managing real-time data streams and over 1,000 IoT endpoints.",
     ar: "طبقات تكامل خلفية عالية الإنتاجية بـ SignalR و gRPC تدير تدفّق البيانات اللحظي وأكثر من 1000 نقطة إنترنت أشياء.",
@@ -232,33 +240,74 @@ export const t: Dict = {
 
   "events.item.we3ds.name": { en: "Senior Software Developer", ar: "مطوّر برمجيات أول" },
   "events.item.we3ds.location": { en: "WE3DS Company · Tanta, EG", ar: "شركة WE3DS · طنطا، مصر" },
-  "events.item.we3ds.topic": { en: ".NET 8 Microservices, DDD, SignalR", ar: "خدمات .NET 8 المصغّرة وDDD وSignalR" },
+  "events.item.we3ds.topic": {
+    en: ".NET 8 Microservices, DDD, SignalR",
+    ar: "خدمات .NET 8 المصغّرة وDDD وSignalR",
+  },
 
-  "events.item.freelance.name": { en: "Full Stack Developer (Freelance)", ar: "مطوّر متكامل (عمل حر)" },
-  "events.item.freelance.location": { en: "Self-Employed · Cairo, EG", ar: "عمل حر · القاهرة، مصر" },
-  "events.item.freelance.topic": { en: "React & .NET Core delivery for clients", ar: "تسليم مشاريع React و.NET Core للعملاء" },
+  "events.item.freelance.name": {
+    en: "Full Stack Developer (Freelance)",
+    ar: "مطوّر متكامل (عمل حر)",
+  },
+  "events.item.freelance.location": {
+    en: "Self-Employed · Cairo, EG",
+    ar: "عمل حر · القاهرة، مصر",
+  },
+  "events.item.freelance.topic": {
+    en: "React & .NET Core delivery for clients",
+    ar: "تسليم مشاريع React و.NET Core للعملاء",
+  },
 
-  "events.item.platform.name": { en: "Multi-Tenant Marketplace Platform", ar: "منصة أسواق متعددة المستأجرين" },
-  "events.item.platform.location": { en: "Enterprise · Production", ar: "قطاع المؤسسات · بيئة إنتاج" },
-  "events.item.platform.topic": { en: "300% faster queries with Redis caching", ar: "استعلامات أسرع بنسبة 300% مع تخزين Redis" },
+  "events.item.platform.name": {
+    en: "Multi-Tenant Marketplace Platform",
+    ar: "منصة أسواق متعددة المستأجرين",
+  },
+  "events.item.platform.location": {
+    en: "Enterprise · Production",
+    ar: "قطاع المؤسسات · بيئة إنتاج",
+  },
+  "events.item.platform.topic": {
+    en: "300% faster queries with Redis caching",
+    ar: "استعلامات أسرع بنسبة 300% مع تخزين Redis",
+  },
 
-  "events.item.iot.name": { en: "Real-Time IoT Telemetry Layer", ar: "طبقة قياس عن بُعد لإنترنت الأشياء" },
+  "events.item.iot.name": {
+    en: "Real-Time IoT Telemetry Layer",
+    ar: "طبقة قياس عن بُعد لإنترنت الأشياء",
+  },
   "events.item.iot.location": { en: "WE3DS · Production", ar: "WE3DS · بيئة إنتاج" },
-  "events.item.iot.topic": { en: "1000+ live endpoints over SignalR", ar: "أكثر من 1000 نقطة اتصال حيّة عبر SignalR" },
+  "events.item.iot.topic": {
+    en: "1000+ live endpoints over SignalR",
+    ar: "أكثر من 1000 نقطة اتصال حيّة عبر SignalR",
+  },
 
   "events.item.devops.name": { en: "CI/CD Automation Pipeline", ar: "خط أتمتة CI/CD" },
   "events.item.devops.location": { en: "Azure DevOps · Docker", ar: "Azure DevOps · Docker" },
-  "events.item.devops.topic": { en: "Shorter, repeatable release cycles", ar: "دورات إصدار أقصر وقابلة للتكرار" },
+  "events.item.devops.topic": {
+    en: "Shorter, repeatable release cycles",
+    ar: "دورات إصدار أقصر وقابلة للتكرار",
+  },
 
   "events.item.degree.name": { en: "B.Sc. Computer Science", ar: "بكالوريوس علوم الحاسب" },
   "events.item.degree.location": { en: "HTI University · Egypt", ar: "معهد HTI · مصر" },
-  "events.item.degree.topic": { en: "Software engineering & databases", ar: "هندسة البرمجيات وقواعد البيانات" },
+  "events.item.degree.topic": {
+    en: "Software engineering & databases",
+    ar: "هندسة البرمجيات وقواعد البيانات",
+  },
 
-  "events.item.arch.name": { en: "Clean Architecture & DDD Practice", ar: "تطبيق Clean Architecture وDDD" },
-  "events.item.arch.location": { en: "Self-Study · Applied at work", ar: "تعلّم ذاتي · مطبّق في العمل" },
-  "events.item.arch.topic": { en: "CQRS, MediatR, unit testing", ar: "CQRS وMediatR واختبارات الوحدة" },
+  "events.item.arch.name": {
+    en: "Clean Architecture & DDD Practice",
+    ar: "تطبيق Clean Architecture وDDD",
+  },
+  "events.item.arch.location": {
+    en: "Self-Study · Applied at work",
+    ar: "تعلّم ذاتي · مطبّق في العمل",
+  },
+  "events.item.arch.topic": {
+    en: "CQRS, MediatR, unit testing",
+    ar: "CQRS وMediatR واختبارات الوحدة",
+  },
 };
-
 
 interface I18nContextValue {
   lang: Lang;

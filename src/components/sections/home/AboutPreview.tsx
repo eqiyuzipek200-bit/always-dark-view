@@ -39,7 +39,8 @@ export function AboutPreview() {
 
               {/* Description */}
               <p className="font-sans text-xs sm:text-sm text-card-foreground/85 leading-relaxed mb-6 max-w-sm">
-                Senior Full Stack Engineer specializing in scaling marketplace throughput by 300% using .NET 8, Clean Architecture & Next.js.
+                Senior Full Stack Engineer specializing in scaling marketplace throughput by 300%
+                using .NET 8, Clean Architecture & Next.js.
               </p>
 
               {/* CTA Button */}

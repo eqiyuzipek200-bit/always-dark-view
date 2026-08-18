@@ -10,6 +10,8 @@ import { Search, ChevronLeft, ChevronRight, LayoutGrid, Rows3, X, ArrowUpDown } 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useI18n } from "@/lib/i18n";
+import { pageSeo } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 import { useLocalizedContent } from "@/lib/localize";
 import {
   Select,
@@ -19,47 +21,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+const PROJECTS_DESCRIPTION =
+  "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems, with search, filters and sorting.";
+
 export const Route = createFileRoute("/projects/")({
-  head: () => ({
-    meta: [
-      { title: "All Projects | Marketplace Systems Architect" },
-      {
-        name: "description",
-        content:
-          "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems, with search, filters and sorting.",
-      },
-      { property: "og:title", content: "All Projects | Marketplace Systems Architect" },
-      {
-        property: "og:description",
-        content:
-          "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/projects" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "All Projects | Marketplace Systems Architect" },
-      {
-        name: "twitter:description",
-        content:
-          "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "/projects" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
+  head: () =>
+    pageSeo({
+      title: "All Projects | Marketplace Systems Architect",
+      description: PROJECTS_DESCRIPTION,
+      path: "/projects",
+      jsonLd: [
+        {
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: "All Projects",
-          description:
-            "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems.",
-          url: "/projects",
-        }),
-      },
-    ],
-  }),
-
+          description: PROJECTS_DESCRIPTION,
+          url: absoluteUrl("/projects"),
+        },
+      ],
+    }),
   component: ProjectsPage,
   pendingComponent: PageSkeleton,
 });
@@ -74,7 +54,7 @@ const SORTS = [
 
 type SortValue = (typeof SORTS)[number]["value"];
 
-export function ProjectsPage() {
+function ProjectsPage() {
   const { tr } = useI18n();
   const { category: trCategory } = useLocalizedContent();
   const reduce = useReducedMotion();
@@ -151,7 +131,6 @@ export function ProjectsPage() {
               className="sticky z-20 -mx-5 mb-5 px-5 py-1.5"
               style={{ top: "calc(var(--nav-h, 4.5rem) + 0.25rem)" }}
             >
-
               <div className="rounded-2xl bg-card p-2.5 border border-border shadow-[var(--shadow-glow)] grid grid-cols-1 gap-2 md:grid-cols-[minmax(0,1fr)_auto_auto] md:items-center">
                 {/* Search Box */}
                 <div className="relative min-w-0">
@@ -215,10 +194,18 @@ export function ProjectsPage() {
                   aria-label={tr("projects.index.viewMode")}
                   className="flex h-9 shrink-0 items-center gap-1 rounded-xl border border-border bg-foreground/10 p-1"
                 >
-                  <ViewButton active={view === "grid"} onClick={() => setView("grid")} label={tr("projects.index.grid")}>
+                  <ViewButton
+                    active={view === "grid"}
+                    onClick={() => setView("grid")}
+                    label={tr("projects.index.grid")}
+                  >
                     <LayoutGrid className="size-4" />
                   </ViewButton>
-                  <ViewButton active={view === "list"} onClick={() => setView("list")} label={tr("projects.index.list")}>
+                  <ViewButton
+                    active={view === "list"}
+                    onClick={() => setView("list")}
+                    label={tr("projects.index.list")}
+                  >
                     <Rows3 className="size-4" />
                   </ViewButton>
                 </div>
@@ -305,7 +292,10 @@ export function ProjectsPage() {
                 </AnimatePresence>
 
                 {totalPages > 1 && (
-                  <nav aria-label={tr("projects.index.pagination")} className="flex flex-wrap items-center justify-center gap-3">
+                  <nav
+                    aria-label={tr("projects.index.pagination")}
+                    className="flex flex-wrap items-center justify-center gap-3"
+                  >
                     <button
                       onClick={() => setCurrentPage(Math.max(1, page - 1))}
                       disabled={page === 1}
@@ -373,7 +363,9 @@ function ViewButton({
       aria-label={label}
       title={label}
       className={`inline-flex size-9 items-center justify-center rounded-xl transition-all ${
-        active ? "bg-foreground text-background font-bold shadow-sm" : "text-foreground/70 hover:text-foreground"
+        active
+          ? "bg-foreground text-background font-bold shadow-sm"
+          : "text-foreground/70 hover:text-foreground"
       }`}
     >
       {children}

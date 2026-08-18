@@ -161,8 +161,7 @@ export const testimonialAr: Record<string, { quote: string; name: string; title:
     title: "الرئيسة التنفيذية، Aurelia Commerce",
   },
   "Daniel Okafor": {
-    quote:
-      "محرك المزايدة اللحظي الذي صممه ما زال العمود الفقري لأعمالنا. ثابت تماماً تحت الضغط.",
+    quote: "محرك المزايدة اللحظي الذي صممه ما زال العمود الفقري لأعمالنا. ثابت تماماً تحت الضغط.",
     name: "دانيال أوكافور",
     title: "المدير التقني، BidHub",
   },

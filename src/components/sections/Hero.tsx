@@ -11,9 +11,7 @@ export function Hero() {
         {/* Left Column Text & Action */}
         <div className="relative z-10 text-center lg:text-start">
           {/* Eyebrow Label */}
-          <p
-            className="enter-up mb-4 font-sans text-xs font-black tracking-[0.35em] text-primary uppercase"
-          >
+          <p className="enter-up mb-4 font-sans text-xs font-black tracking-[0.35em] text-primary uppercase">
             {tr("hero.eyebrow")}
           </p>
 
@@ -49,7 +47,9 @@ export function Hero() {
                 className="group inline-flex items-center gap-3 rounded-xl bg-card px-7 py-3.5 shadow-lg border border-border transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 <span className="grid size-7 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm transition-transform duration-300 group-hover:rotate-12">
-                  <Play className={`size-3.5 fill-primary-foreground text-primary-foreground ${dir === 'rtl' ? 'me-0.5 rotate-180' : 'ms-0.5'}`} />
+                  <Play
+                    className={`size-3.5 fill-primary-foreground text-primary-foreground ${dir === "rtl" ? "me-0.5 rotate-180" : "ms-0.5"}`}
+                  />
                 </span>
                 <span className="whitespace-nowrap font-sans text-xs font-black tracking-[0.2em] text-card-foreground uppercase">
                   {tr("hero.cta")}
@@ -74,10 +74,7 @@ export function Hero() {
         </div>
 
         {/* Right Column: 3D Isometric Art */}
-        <div
-          style={{ animationDelay: "0.1s" }}
-          className="enter-up relative"
-        >
+        <div style={{ animationDelay: "0.1s" }} className="enter-up relative">
           <img
             src={heroIso}
             alt="Mostafa Samir Full Stack Engineer Workspace"
