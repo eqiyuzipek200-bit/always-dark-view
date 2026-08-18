@@ -1,4 +1,4 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { projects } from "@/data";
 import {
@@ -23,8 +23,18 @@ import { pageSeo } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/projects/$id")({
+  loader: ({ params }) => {
+    const project = projects.find((p) => p.id === params.id);
+    if (!project) throw notFound();
+    return { projectId: project.id };
+  },
   head: ({ params }) => {
     const project = projects.find((p) => p.id === params.id);
+    if (!project) {
+      return {
+        meta: [{ title: "Project not found" }, { name: "robots", content: "noindex" }],
+      };
+    }
     const title = `${project?.title ?? "Project"} | Marketplace Systems Architect`;
     const description = project?.description ?? "Project details";
     const path = `/projects/${params.id}`;
@@ -61,34 +71,36 @@ export const Route = createFileRoute("/projects/$id")({
     });
   },
   component: ProjectDetail,
+  notFoundComponent: ProjectNotFound,
   pendingComponent: ProjectDetailSkeleton,
 });
+
+function ProjectNotFound() {
+  const { tr } = useI18n();
+  return (
+    <div className="flex min-h-screen select-none flex-col">
+      <Navbar />
+      <div className="flex flex-1 flex-col items-center justify-center py-32 text-center">
+        <h1 className="mb-4 font-display text-4xl font-bold text-foreground">
+          {tr("project.notFound.title")}
+        </h1>
+        <Link
+          to="/projects"
+          className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-3 font-sans text-xs font-black uppercase tracking-widest text-card-foreground shadow-md transition-transform hover:scale-105"
+        >
+          <ArrowLeft className="size-4 rtl:rotate-180" />
+          {tr("project.notFound.back")}
+        </Link>
+      </div>
+      <Footer />
+    </div>
+  );
+}
 
 function ProjectDetail() {
   const { id } = Route.useParams();
   const { tr } = useI18n();
-  const project = projects.find((p) => p.id === id);
-
-  if (!project) {
-    return (
-      <div className="min-h-screen flex flex-col select-none">
-        <Navbar />
-        <div className="flex-1 flex flex-col items-center justify-center py-32 text-center">
-          <h1 className="font-display text-4xl font-bold text-foreground mb-4">
-            {tr("project.notFound.title")}
-          </h1>
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-2 rounded-xl bg-card px-6 py-3 font-sans text-xs font-black tracking-widest text-card-foreground uppercase shadow-md border border-border hover:scale-105 transition-transform"
-          >
-            <ArrowLeft className="size-4 rtl:rotate-180" />
-            {tr("project.notFound.back")}
-          </Link>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  const project = projects.find((p) => p.id === id)!;
 
   const hasLiveSite = project.live !== "#";
   const projectIndex = projects.findIndex((p) => p.id === id);
