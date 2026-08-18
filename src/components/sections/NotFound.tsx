@@ -3,8 +3,7 @@ import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } fro
 import { ArrowLeft, Compass, Home, Search } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { PageShell } from "@/components/layout/PageShell";
 
 const NAV = [
   { to: "/projects", label: "Projects" },
@@ -64,12 +63,12 @@ export function NotFound() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <Navbar />
-      <main
-        ref={ref}
-        className="relative flex flex-col items-center justify-start overflow-hidden bg-background px-5 pb-12 pt-36"
-      >
+    <PageShell
+      contained={false}
+      padded={false}
+      mainRef={ref}
+      className="relative flex flex-col items-center justify-start overflow-hidden bg-background px-5 pb-12 pt-36"
+    >
         {/* ambient layer */}
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div
@@ -230,10 +229,7 @@ export function NotFound() {
             ))}
           </motion.nav>
         </motion.section>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
-export default NotFound;

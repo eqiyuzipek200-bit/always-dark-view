@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,8 @@ interface PageShellProps {
   padded?: boolean;
   /** Extra classes for the <main> landmark. */
   className?: string;
+  /** Optional ref for pages with pointer-driven main content. */
+  mainRef?: Ref<HTMLElement>;
 }
 
 /**
@@ -22,11 +24,13 @@ export function PageShell({
   contained = true,
   padded = true,
   className,
+  mainRef,
 }: PageShellProps) {
   return (
     <div className="flex min-h-screen select-none flex-col overflow-x-hidden bg-background text-foreground">
       <Navbar />
       <main
+        ref={mainRef}
         className={cn(
           "flex-1",
           padded && "pb-12 pt-24",
