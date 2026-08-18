@@ -26,7 +26,9 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
 
   const onSubmit = async (values: FormValues) => {
     const subject = encodeURIComponent(`Portfolio enquiry from ${values.name}`);
-    const body = encodeURIComponent(`${values.message}\n\nFrom: ${values.name}\nEmail: ${values.email}`);
+    const body = encodeURIComponent(
+      `${values.message}\n\nFrom: ${values.name}\nEmail: ${values.email}`,
+    );
     window.location.href = `mailto:m.ssaid356@gmail.com?subject=${subject}&body=${body}`;
     toast.success(tr("contact.success"));
     reset();
@@ -49,7 +51,10 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
             className="rounded-2xl bg-card border border-border shadow-[var(--shadow-glow)] space-y-5 p-7"
           >
             <div>
-              <label htmlFor="contact-name" className="mb-2 block text-sm font-medium text-card-foreground">
+              <label
+                htmlFor="contact-name"
+                className="mb-2 block text-sm font-medium text-card-foreground"
+              >
                 {tr("contact.name")}
               </label>
               <input
@@ -69,7 +74,10 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
             </div>
 
             <div>
-              <label htmlFor="contact-email" className="mb-2 block text-sm font-medium text-card-foreground">
+              <label
+                htmlFor="contact-email"
+                className="mb-2 block text-sm font-medium text-card-foreground"
+              >
                 {tr("contact.email")}
               </label>
               <input
@@ -83,14 +91,21 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
                 placeholder="jane@company.com"
               />
               {errors.email && (
-                <p id="contact-email-error" role="alert" className="mt-1.5 text-sm text-destructive">
+                <p
+                  id="contact-email-error"
+                  role="alert"
+                  className="mt-1.5 text-sm text-destructive"
+                >
                   {errors.email.message}
                 </p>
               )}
             </div>
 
             <div>
-              <label htmlFor="contact-message" className="mb-2 block text-sm font-medium text-card-foreground">
+              <label
+                htmlFor="contact-message"
+                className="mb-2 block text-sm font-medium text-card-foreground"
+              >
                 {tr("contact.message")}
               </label>
               <textarea
@@ -103,7 +118,11 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
                 placeholder="Tell me about your marketplace..."
               />
               {errors.message && (
-                <p id="contact-message-error" role="alert" className="mt-1.5 text-sm text-destructive">
+                <p
+                  id="contact-message-error"
+                  role="alert"
+                  className="mt-1.5 text-sm text-destructive"
+                >
                   {errors.message.message}
                 </p>
               )}
