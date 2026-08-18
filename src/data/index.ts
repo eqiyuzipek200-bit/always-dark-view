@@ -14,3 +14,11 @@ export { experience, type ExperienceItem } from "./experience";
 
 // Testimonials
 export { testimonials, type Testimonial } from "./testimonials";
+
+// Credentials (certifications, education, awards)
+export {
+  credentials,
+  credentialTabs,
+  type CredentialItem,
+  type CredentialTab,
+} from "./credentials";

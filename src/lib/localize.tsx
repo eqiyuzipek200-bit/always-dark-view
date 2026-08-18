@@ -8,9 +8,9 @@ import {
   skillGroupAr,
   testimonialAr,
 } from "@/data/ar";
-import type { Project } from "@/data/projects";
-import type { ExperienceItem } from "@/data/experience";
-import type { Testimonial } from "@/data/testimonials";
+import type { Project } from "@/data";
+import type { ExperienceItem } from "@/data";
+import type { Testimonial } from "@/data";
 
 /**
  * Content localisation: the data layer stays English, this hook returns the

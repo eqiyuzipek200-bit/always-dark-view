@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { PageShell } from "@/components/layout/PageShell";
 import { Hero } from "@/components/sections/Hero";
 import { AboutPreview } from "@/components/sections/home/AboutPreview";
 import { SkillsPreview } from "@/components/sections/home/SkillsPreview";
@@ -48,28 +47,24 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <Navbar />
-      <main>
-        <Hero />
-        <Projects />
-        <div className="defer-paint">
-          <SkillsPreview />
-        </div>
-        <div className="defer-paint">
-          <ExperiencePreview />
-        </div>
-        <div className="defer-paint">
-          <AboutPreview />
-        </div>
-        <div className="defer-paint">
-          <Testimonials />
-        </div>
-        <div className="defer-paint">
-          <ContactCta />
-        </div>
-      </main>
-      <Footer />
-    </div>
+    <PageShell contained={false} padded={false}>
+      <Hero />
+      <Projects />
+      <div className="defer-paint">
+        <SkillsPreview />
+      </div>
+      <div className="defer-paint">
+        <ExperiencePreview />
+      </div>
+      <div className="defer-paint">
+        <AboutPreview />
+      </div>
+      <div className="defer-paint">
+        <Testimonials />
+      </div>
+      <div className="defer-paint">
+        <ContactCta />
+      </div>
+    </PageShell>
   );
 }

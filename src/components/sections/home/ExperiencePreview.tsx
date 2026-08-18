@@ -13,7 +13,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import { credentials, credentialTabs, type CredentialTab } from "@/data/credentials";
+import { credentials, credentialTabs, type CredentialTab } from "@/data";
 
 const tabIcons: Record<CredentialTab, typeof Building2> = {
   work: Building2,

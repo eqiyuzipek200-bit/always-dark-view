@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
-import { credentials, type CredentialItem } from "@/data/credentials";
+import { credentials, type CredentialItem } from "@/data";
 import {
   ChevronLeft,
   ChevronRight,
