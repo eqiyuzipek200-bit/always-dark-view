@@ -47,7 +47,7 @@ function SkillsPage() {
       <section className="py-6">
         <div className="grid gap-6 sm:grid-cols-2">
           {skillGroups.map(({ title, icon, skills }) => {
-            const Icon = SKILL_ICONS[icon];
+            const Icon: LucideIcon = SKILL_ICONS[icon] ?? Code;
             return (
               <div
                 key={title}

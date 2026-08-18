@@ -7,7 +7,7 @@
 export { projects, projectFilters, type Project, type ProjectCategory } from "./projects";
 
 // Skills
-export { skillGroups, type SkillGroup } from "./skills";
+export { skillGroups, type SkillGroup, type SkillIcon } from "./skills";
 
 // Experience
 export { experience, type ExperienceItem } from "./experience";
