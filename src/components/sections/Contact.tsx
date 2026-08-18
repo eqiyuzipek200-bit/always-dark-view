@@ -20,7 +20,6 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
