@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type Lang = "en" | "ar";
+type Lang = "en" | "ar";
 
 type Dict = Record<string, { en: string; ar: string }>;
 
-export const t: Dict = {
+const t: Dict = {
   "nav.works": { en: "WORKS", ar: "الأعمال" },
   "works.title": { en: "Selected Work", ar: "أعمال مختارة" },
   "projects.index.results": { en: "Project results", ar: "نتائج المشاريع" },
@@ -89,8 +89,8 @@ export const t: Dict = {
   "contact.message": { en: "Message", ar: "الرسالة" },
   "contact.send": { en: "Send Message", ar: "إرسال الرسالة" },
   "contact.success": {
-    en: "Message sent — I'll get back to you soon!",
-    ar: "تم إرسال الرسالة — سأعود إليك قريباً!",
+    en: "Email draft opened — send it from your email app.",
+    ar: "تم فتح مسودة البريد — أرسلها من تطبيق البريد.",
   },
 
   "welcome.eyebrow": { en: "Welcome aboard", ar: "أهلاً بك" },

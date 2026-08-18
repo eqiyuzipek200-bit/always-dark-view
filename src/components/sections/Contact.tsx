@@ -31,7 +31,6 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
     );
     window.location.href = `mailto:m.ssaid356@gmail.com?subject=${subject}&body=${body}`;
     toast.success(tr("contact.success"));
-    reset();
   };
 
   const fieldClass =

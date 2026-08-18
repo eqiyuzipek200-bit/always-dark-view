@@ -2,7 +2,7 @@
 export type SkillIcon =
   "frontend" | "backend" | "database" | "architecture" | "realtime" | "devops" | "security";
 
-export interface SkillGroup {
+interface SkillGroup {
   title: string;
   /** Icon key resolved by the UI, keeping the data layer free of components. */
   icon: SkillIcon;
