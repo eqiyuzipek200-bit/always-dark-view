@@ -1,128 +1,94 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { CheckCircle2 } from "lucide-react";
 import { PageSkeleton } from "@/components/ui/Skeletons";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { PageShell } from "@/components/layout/PageShell";
+import { PageIntro } from "@/components/ui/PageIntro";
+import { CtaLink, CtaRow } from "@/components/ui/CtaLink";
+import { pageSeo, pageTitle } from "@/lib/seo";
 import { useI18n } from "@/lib/i18n";
 
-const stats = [
+const STATS = [
   { value: "4+", key: "about.stat.years" },
   { value: "300%", key: "about.stat.throughput" },
   { value: "1,000+", key: "about.stat.iot" },
   { value: ".NET 8", key: "about.stat.microservices" },
 ];
 
-const principles = [1, 2, 3, 4].map((n) => ({
+const PRINCIPLES = [1, 2, 3, 4].map((n) => ({
   titleKey: `about.principle.${n}.title`,
   bodyKey: `about.principle.${n}.body`,
 }));
 
+const DESCRIPTION =
+  "Senior Full Stack Engineer with 4+ years of experience specializing in high-performance .NET 8 Microservices & Next.js marketplaces.";
+
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Mostafa Samir | Senior Full Stack Engineer" },
-      {
-        name: "description",
-        content:
-          "Senior Full Stack Engineer with 4+ years of experience specializing in high-performance .NET 8 Microservices & Next.js marketplaces.",
-      },
-      { property: "og:title", content: "About — Mostafa Samir | Senior Full Stack Engineer" },
-      { property: "og:description", content: "Senior Full Stack Engineer with 4+ years of experience specializing in high-performance .NET 8 Microservices & Next.js marketplaces." },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/about" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "About — Mostafa Samir | Senior Full Stack Engineer" },
-      { name: "twitter:description", content: "Senior Full Stack Engineer with 4+ years of experience specializing in high-performance .NET 8 Microservices & Next.js marketplaces." },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
-  }),
+  head: () =>
+    pageSeo({ title: pageTitle("About"), description: DESCRIPTION, path: "/about" }),
   pendingComponent: PageSkeleton,
   component: AboutPage,
 });
 
 function AboutPage() {
   const { tr } = useI18n();
+
   return (
-    <div className="min-h-screen select-none pt-24 pb-12 overflow-x-hidden">
-      <Navbar />
-      <main className="mx-auto max-w-6xl px-4 sm:px-8 md:px-12">
-        {/* Header Banner */}
-        <section className="py-12 text-center">
-          <span className="rounded-xl bg-foreground/10 px-4 py-1.5 font-sans text-xs font-black tracking-[0.25em] text-primary uppercase border border-border inline-block mb-4">
-            {tr("about.page.eyebrow")}
-          </span>
-          <h1 className="font-['Oswald',sans-serif] text-5xl sm:text-6xl md:text-7xl font-bold text-foreground tracking-tight uppercase leading-tight mb-4">
-            {tr("about.page.title")}
-          </h1>
-          <p className="font-sans text-sm sm:text-base text-foreground/90 max-w-2xl mx-auto leading-relaxed">
-            {tr("about.page.desc")}
-          </p>
-        </section>
+    <PageShell>
+      <PageIntro
+        eyebrow={tr("about.page.eyebrow")}
+        title={tr("about.page.title")}
+        description={tr("about.page.desc")}
+      />
 
-        {/* Stats Grid */}
-        <section className="py-6">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {stats.map((s) => (
-              <div
-                key={s.key}
-                className="rounded-2xl bg-card p-6 text-center border border-border shadow-lg"
-              >
-                <div
-                  dir="ltr"
-                  className="font-['Oswald',sans-serif] text-3xl sm:text-4xl font-bold text-card-foreground"
-                >
-                  {s.value}
-                </div>
-
-                <div className="font-sans text-[11px] font-black tracking-wider text-card-foreground/80 uppercase mt-1">
-                  {tr(s.key)}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Core Principles */}
-        <section className="py-12">
-          <h2 className="font-['Oswald',sans-serif] text-3xl sm:text-4xl font-bold text-foreground mb-8 text-center uppercase tracking-tight">
-            {tr("about.page.approach")}
-          </h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {principles.map((p) => (
-              <div
-                key={p.titleKey}
-                className="rounded-2xl bg-card p-8 border border-border shadow-[var(--shadow-glow)]"
-              >
-                <h3 className="font-['Oswald',sans-serif] text-2xl font-bold text-card-foreground flex items-center gap-3 mb-3">
-                  <CheckCircle2 className="size-5 text-primary" />
-                  {tr(p.titleKey)}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-card-foreground/85 leading-relaxed">
-                  {tr(p.bodyKey)}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 flex justify-center gap-4 flex-wrap">
-            <Link
-              to="/skills"
-              className="inline-flex items-center gap-2 rounded-xl bg-card px-6 py-3 font-sans text-xs font-black tracking-widest text-card-foreground uppercase shadow-md border border-border hover:scale-105 transition-transform"
+      <section className="py-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {STATS.map((stat) => (
+            <div
+              key={stat.key}
+              className="rounded-2xl border border-border bg-card p-6 text-center shadow-lg"
             >
-              {tr("about.page.skillsCta")}
-              <ArrowRight className="size-4 rtl:rotate-180" />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-sans text-xs font-black tracking-widest text-primary-foreground uppercase shadow-md hover:scale-105 transition-transform"
+              <div
+                dir="ltr"
+                className="font-['Oswald',sans-serif] text-3xl font-bold text-card-foreground sm:text-4xl"
+              >
+                {stat.value}
+              </div>
+              <div className="mt-1 font-sans text-[11px] font-black uppercase tracking-wider text-card-foreground/80">
+                {tr(stat.key)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-12">
+        <h2 className="mb-8 text-center font-['Oswald',sans-serif] text-3xl font-bold uppercase tracking-tight text-foreground sm:text-4xl">
+          {tr("about.page.approach")}
+        </h2>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {PRINCIPLES.map((principle) => (
+            <div
+              key={principle.titleKey}
+              className="rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-glow)]"
             >
-              {tr("about.page.contactCta")}
-              <ArrowRight className="size-4 rtl:rotate-180" />
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+              <h3 className="mb-3 flex items-center gap-3 font-['Oswald',sans-serif] text-2xl font-bold text-card-foreground">
+                <CheckCircle2 className="size-5 text-primary" />
+                {tr(principle.titleKey)}
+              </h3>
+              <p className="font-sans text-xs leading-relaxed text-card-foreground/85 sm:text-sm">
+                {tr(principle.bodyKey)}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <CtaRow>
+          <CtaLink to="/skills" variant="secondary">
+            {tr("about.page.skillsCta")}
+          </CtaLink>
+          <CtaLink to="/contact">{tr("about.page.contactCta")}</CtaLink>
+        </CtaRow>
+      </section>
+    </PageShell>
   );
 }
