@@ -7,6 +7,9 @@ interface PageShellProps {
   children: ReactNode;
   /** Wrap the content in a centered container. Disable for full-bleed pages. */
   contained?: boolean;
+  /** Apply the standard top/bottom page padding. Disable for hero-first pages. */
+  padded?: boolean;
+  /** Extra classes for the <main> landmark. */
   className?: string;
 }
 
@@ -14,11 +17,23 @@ interface PageShellProps {
  * The single page chrome: navbar, main landmark and footer.
  * Routes render content only — never their own navbar/footer.
  */
-export function PageShell({ children, contained = true, className }: PageShellProps) {
+export function PageShell({
+  children,
+  contained = true,
+  padded = true,
+  className,
+}: PageShellProps) {
   return (
-    <div className="min-h-screen select-none overflow-x-hidden pb-12 pt-24">
+    <div className="flex min-h-screen select-none flex-col overflow-x-hidden bg-background text-foreground">
       <Navbar />
-      <main className={cn(contained && "mx-auto max-w-6xl px-4 sm:px-8 md:px-12", className)}>
+      <main
+        className={cn(
+          "flex-1",
+          padded && "pb-12 pt-24",
+          contained && "mx-auto w-full max-w-6xl px-4 sm:px-8 md:px-12",
+          className,
+        )}
+      >
         {children}
       </main>
       <Footer />
