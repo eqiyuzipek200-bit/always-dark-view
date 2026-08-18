@@ -8,9 +8,7 @@ export function ContactCta() {
       <div className="mx-auto max-w-4xl px-5">
         <Reveal>
           <div className="rounded-2xl bg-card border border-border shadow-[var(--shadow-glow)] px-8 py-14 text-center md:px-14">
-            <span className="inline-block eyebrow-wide text-primary">
-              Available for new work
-            </span>
+            <span className="inline-block eyebrow-wide text-primary">Available for new work</span>
             <h2 className="mt-5 font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl text-card-foreground">
               Let&apos;s build something
               <br />

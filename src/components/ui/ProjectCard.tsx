@@ -42,7 +42,9 @@ export function ProjectCard({ project, index, view = "grid" }: ProjectCardProps)
       <div className="flex flex-1 flex-col gap-4 pt-5">
         <header className="min-w-0">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="font-['Oswald',sans-serif] text-2xl font-bold leading-tight text-card-foreground">{projectTitle(project)}</h3>
+            <h3 className="font-['Oswald',sans-serif] text-2xl font-bold leading-tight text-card-foreground">
+              {projectTitle(project)}
+            </h3>
             {project.status && (
               <span className="shrink-0 rounded-xl bg-primary px-3 py-0.5 text-[10px] font-black text-primary-foreground uppercase tracking-wider">
                 {projectStatus(project.status)}
@@ -112,11 +114,15 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       </div>
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-['Oswald',sans-serif] text-2xl font-bold text-card-foreground">{projectTitle(project)}</h3>
+          <h3 className="font-['Oswald',sans-serif] text-2xl font-bold text-card-foreground">
+            {projectTitle(project)}
+          </h3>
           <Badge>{projectType(project.type)}</Badge>
           {project.client && <Badge {...latinProps}>{project.client}</Badge>}
         </div>
-        <p className="mt-2 line-clamp-2 font-sans text-xs text-card-foreground/85 leading-relaxed">{projectDescription(project)}</p>
+        <p className="mt-2 line-clamp-2 font-sans text-xs text-card-foreground/85 leading-relaxed">
+          {projectDescription(project)}
+        </p>
         <div className="mt-3">
           <TechStackPreview techs={project.tech} limit={5} />
         </div>
@@ -198,7 +204,9 @@ export function ProjectCardImage({
 }: ProjectCardImageProps) {
   const { category } = useLocalizedContent();
   return (
-    <div className={`relative overflow-hidden rounded-xl border border-border ${compact ? "h-36" : "h-48"}`}>
+    <div
+      className={`relative overflow-hidden rounded-xl border border-border ${compact ? "h-36" : "h-48"}`}
+    >
       <SmartImage
         src={project.image}
         alt={`${project.title} preview`}

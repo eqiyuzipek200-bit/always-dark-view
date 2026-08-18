@@ -58,7 +58,7 @@ export function Navbar() {
       ref={headerRef}
       className={cn(
         "fixed inset-x-0 top-0 z-50 flex justify-center pointer-events-none transition-[padding] duration-500 ease-out",
-        scrolled ? "py-1" : "py-2.5"
+        scrolled ? "py-1" : "py-2.5",
       )}
     >
       <nav
@@ -67,7 +67,7 @@ export function Navbar() {
           "w-[calc(100%-1.5rem)] max-w-5xl",
           scrolled
             ? "bg-background/75 backdrop-blur-xl shadow-[0_6px_24px_-6px_rgba(0,0,0,0.25)] border-border/70 py-1.5 px-3"
-            : "bg-background/40 backdrop-blur-md shadow-[0_4px_20px_-8px_rgba(0,0,0,0.15)] border-border/40 py-2 px-4"
+            : "bg-background/40 backdrop-blur-md shadow-[0_4px_20px_-8px_rgba(0,0,0,0.15)] border-border/40 py-2 px-4",
         )}
       >
         {/* Left: Logo Badge Pill */}
@@ -121,7 +121,11 @@ export function Navbar() {
             className="grid size-8 place-items-center rounded-2xl bg-foreground/10 border border-border text-foreground transition-all hover:bg-foreground/20 hover:scale-105"
             title={tr("common.theme")}
           >
-            {theme === "dark" ? <Sun className="size-3.5 text-[#FFD000]" /> : <Moon className="size-3.5 text-[#FF4B35]" />}
+            {theme === "dark" ? (
+              <Sun className="size-3.5 text-[#FFD000]" />
+            ) : (
+              <Moon className="size-3.5 text-[#FF4B35]" />
+            )}
           </button>
 
           {/* Language Switcher */}

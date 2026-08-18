@@ -131,7 +131,6 @@ function ProjectsPage() {
               className="sticky z-20 -mx-5 mb-5 px-5 py-1.5"
               style={{ top: "calc(var(--nav-h, 4.5rem) + 0.25rem)" }}
             >
-
               <div className="rounded-2xl bg-card p-2.5 border border-border shadow-[var(--shadow-glow)] grid grid-cols-1 gap-2 md:grid-cols-[minmax(0,1fr)_auto_auto] md:items-center">
                 {/* Search Box */}
                 <div className="relative min-w-0">
@@ -195,10 +194,18 @@ function ProjectsPage() {
                   aria-label={tr("projects.index.viewMode")}
                   className="flex h-9 shrink-0 items-center gap-1 rounded-xl border border-border bg-foreground/10 p-1"
                 >
-                  <ViewButton active={view === "grid"} onClick={() => setView("grid")} label={tr("projects.index.grid")}>
+                  <ViewButton
+                    active={view === "grid"}
+                    onClick={() => setView("grid")}
+                    label={tr("projects.index.grid")}
+                  >
                     <LayoutGrid className="size-4" />
                   </ViewButton>
-                  <ViewButton active={view === "list"} onClick={() => setView("list")} label={tr("projects.index.list")}>
+                  <ViewButton
+                    active={view === "list"}
+                    onClick={() => setView("list")}
+                    label={tr("projects.index.list")}
+                  >
                     <Rows3 className="size-4" />
                   </ViewButton>
                 </div>
@@ -285,7 +292,10 @@ function ProjectsPage() {
                 </AnimatePresence>
 
                 {totalPages > 1 && (
-                  <nav aria-label={tr("projects.index.pagination")} className="flex flex-wrap items-center justify-center gap-3">
+                  <nav
+                    aria-label={tr("projects.index.pagination")}
+                    className="flex flex-wrap items-center justify-center gap-3"
+                  >
                     <button
                       onClick={() => setCurrentPage(Math.max(1, page - 1))}
                       disabled={page === 1}
@@ -353,7 +363,9 @@ function ViewButton({
       aria-label={label}
       title={label}
       className={`inline-flex size-9 items-center justify-center rounded-xl transition-all ${
-        active ? "bg-foreground text-background font-bold shadow-sm" : "text-foreground/70 hover:text-foreground"
+        active
+          ? "bg-foreground text-background font-bold shadow-sm"
+          : "text-foreground/70 hover:text-foreground"
       }`}
     >
       {children}

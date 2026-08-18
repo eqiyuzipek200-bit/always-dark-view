@@ -23,8 +23,7 @@ const DESCRIPTION =
   "Senior Full Stack Engineer with 4+ years of experience specializing in high-performance .NET 8 Microservices & Next.js marketplaces.";
 
 export const Route = createFileRoute("/about")({
-  head: () =>
-    pageSeo({ title: pageTitle("About"), description: DESCRIPTION, path: "/about" }),
+  head: () => pageSeo({ title: pageTitle("About"), description: DESCRIPTION, path: "/about" }),
   pendingComponent: PageSkeleton,
   component: AboutPage,
 });

@@ -111,7 +111,9 @@ export function NotFound() {
             className="relative mt-6"
           >
             <motion.div
-              {...(reduce ? {} : { style: { rotateX, rotateY, transformStyle: "preserve-3d" as const } })}
+              {...(reduce
+                ? {}
+                : { style: { rotateX, rotateY, transformStyle: "preserve-3d" as const } })}
               className="relative inline-block"
             >
               <motion.span
@@ -138,7 +140,12 @@ export function NotFound() {
                       <motion.span
                         className="absolute inset-0 text-[color-mix(in_oklab,var(--accent)_60%,var(--foreground))]"
                         animate={{ x: [0, 4, -2, 0], opacity: [0, 0.5, 0.25, 0] }}
-                        transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 4.2, delay: 0.08 }}
+                        transition={{
+                          duration: 0.5,
+                          repeat: Infinity,
+                          repeatDelay: 4.2,
+                          delay: 0.08,
+                        }}
                       >
                         404
                       </motion.span>
@@ -147,7 +154,12 @@ export function NotFound() {
                         aria-hidden
                         className="pointer-events-none absolute inset-x-0 h-1/5 bg-[color-mix(in_oklab,var(--accent)_35%,transparent)] mix-blend-overlay"
                         animate={{ top: ["-20%", "120%"] }}
-                        transition={{ duration: 3.2, repeat: Infinity, ease: "linear", repeatDelay: 1.4 }}
+                        transition={{
+                          duration: 3.2,
+                          repeat: Infinity,
+                          ease: "linear",
+                          repeatDelay: 1.4,
+                        }}
                       />
                     </>
                   )}

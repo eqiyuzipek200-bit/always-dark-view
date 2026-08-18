@@ -42,9 +42,14 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
         </Reveal>
 
         <Reveal>
-          <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl bg-card border border-border shadow-[var(--shadow-glow)] space-y-5 p-7">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="rounded-2xl bg-card border border-border shadow-[var(--shadow-glow)] space-y-5 p-7"
+          >
             <div>
-              <label className="mb-2 block text-sm font-medium text-card-foreground">{tr("contact.name")}</label>
+              <label className="mb-2 block text-sm font-medium text-card-foreground">
+                {tr("contact.name")}
+              </label>
               <input {...register("name")} className={fieldClass} placeholder="Jane Doe" />
               {errors.name && (
                 <p className="mt-1.5 text-sm text-destructive">{errors.name.message}</p>
@@ -52,7 +57,9 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-card-foreground">{tr("contact.email")}</label>
+              <label className="mb-2 block text-sm font-medium text-card-foreground">
+                {tr("contact.email")}
+              </label>
               <input {...register("email")} className={fieldClass} placeholder="jane@company.com" />
               {errors.email && (
                 <p className="mt-1.5 text-sm text-destructive">{errors.email.message}</p>
@@ -60,7 +67,9 @@ export function Contact({ showHeading = true }: { showHeading?: boolean } = {}) 
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-card-foreground">{tr("contact.message")}</label>
+              <label className="mb-2 block text-sm font-medium text-card-foreground">
+                {tr("contact.message")}
+              </label>
               <textarea
                 {...register("message")}
                 rows={5}

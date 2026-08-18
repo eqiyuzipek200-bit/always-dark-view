@@ -39,8 +39,7 @@ const DESCRIPTION =
   "Get in touch with Mostafa Samir for marketplace engineering, .NET 8 Microservices, or full-stack web applications.";
 
 export const Route = createFileRoute("/contact")({
-  head: () =>
-    pageSeo({ title: pageTitle("Contact"), description: DESCRIPTION, path: "/contact" }),
+  head: () => pageSeo({ title: pageTitle("Contact"), description: DESCRIPTION, path: "/contact" }),
   pendingComponent: PageSkeleton,
   component: ContactPage,
 });

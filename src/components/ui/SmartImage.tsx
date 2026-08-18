@@ -48,8 +48,7 @@ export function SmartImage({
     if (node?.complete && node.naturalWidth > 0) setStatus("ready");
   }, [resolved?.src]);
 
-  const gradient =
-    fallbackStyle || "var(--gradient-media)";
+  const gradient = fallbackStyle || "var(--gradient-media)";
 
   return (
     <div className={cn("relative overflow-hidden bg-secondary/40", className)}>

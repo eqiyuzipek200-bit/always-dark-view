@@ -42,6 +42,5 @@ export function useSmoothScroll() {
       else clearTimeout(handle);
       cleanup?.();
     };
-
   }, []);
 }

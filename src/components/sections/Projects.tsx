@@ -11,12 +11,15 @@ export function Projects() {
   const { projectTitle, projectDescription, category, projectType } = useLocalizedContent();
   // Grab the first 3 projects as featured for the homepage
   const featuredWorks = projects.slice(0, 3);
-  
+
   // Assign icons based on index for some variety
   const icons = [Rocket, Code2, ExternalLink];
 
   return (
-    <section id="works" className="w-full bg-background py-16 px-4 sm:px-8 md:px-12 text-foreground select-none">
+    <section
+      id="works"
+      className="w-full bg-background py-16 px-4 sm:px-8 md:px-12 text-foreground select-none"
+    >
       <div className="mx-auto max-w-6xl">
         <h2 className="mb-8 font-display text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-foreground text-center md:text-start">
           {tr("works.title")}
@@ -117,7 +120,7 @@ export function Projects() {
   );
 }
 
-// Arrow helper icon 
+// Arrow helper icon
 function ArrowRightIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg
