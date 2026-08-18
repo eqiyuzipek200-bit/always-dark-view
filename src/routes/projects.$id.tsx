@@ -26,7 +26,7 @@ export const Route = createFileRoute("/projects/$id")({
   loader: ({ params }) => {
     const project = projects.find((p) => p.id === params.id);
     if (!project) throw notFound();
-    return { projectId: project.id };
+    return { project };
   },
   head: ({ params }) => {
     const project = projects.find((p) => p.id === params.id);
@@ -35,8 +35,8 @@ export const Route = createFileRoute("/projects/$id")({
         meta: [{ title: "Project not found" }, { name: "robots", content: "noindex" }],
       };
     }
-    const title = `${project?.title ?? "Project"} | Marketplace Systems Architect`;
-    const description = project?.description ?? "Project details";
+    const title = `${project.title} | Marketplace Systems Architect`;
+    const description = project.description;
     const path = `/projects/${params.id}`;
 
     return pageSeo({
@@ -48,7 +48,7 @@ export const Route = createFileRoute("/projects/$id")({
         {
           "@context": "https://schema.org",
           "@type": "CreativeWork",
-          name: project?.title ?? "Project",
+          name: project.title,
           description,
           url: absoluteUrl(path),
           creator: { "@type": "Person", name: "Mostafa Samir" },
@@ -62,7 +62,7 @@ export const Route = createFileRoute("/projects/$id")({
             {
               "@type": "ListItem",
               position: 3,
-              name: project?.title ?? "Project",
+              name: project.title,
               item: absoluteUrl(path),
             },
           ],
@@ -93,12 +93,11 @@ function ProjectNotFound() {
 }
 
 function ProjectDetail() {
-  const { id } = Route.useParams();
+  const { project } = Route.useLoaderData();
   const { tr } = useI18n();
-  const project = projects.find((p) => p.id === id)!;
 
   const hasLiveSite = project.live !== "#";
-  const projectIndex = projects.findIndex((p) => p.id === id);
+  const projectIndex = projects.findIndex((item) => item.id === project.id);
   const nextProject = projects[projectIndex + 1];
   const prevProject = projectIndex > 0 ? projects[projectIndex - 1] : null;
 

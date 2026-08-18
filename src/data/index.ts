@@ -4,16 +4,10 @@
  */
 
 // Projects
-export { projects, projectFilters, type Project, type ProjectCategory } from "./projects";
+export { projects, projectFilters, type Project } from "./projects";
 
 // Skills
-export { skillGroups, type SkillGroup, type SkillIcon } from "./skills";
-
-// Experience
-export { experience, type ExperienceItem } from "./experience";
-
-// Testimonials
-export { testimonials, type Testimonial } from "./testimonials";
+export { skillGroups, type SkillIcon } from "./skills";
 
 // Credentials (certifications, education, awards)
 export {

@@ -1,6 +1,6 @@
 import { SITE, absoluteUrl } from "@/lib/site";
 
-export interface PageSeoInput {
+interface PageSeoInput {
   /** Page title, already including the brand suffix when needed. */
   title: string;
   description: string;

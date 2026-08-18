@@ -136,5 +136,3 @@ export function WelcomeModal() {
     </div>
   );
 }
-
-export default WelcomeModal;

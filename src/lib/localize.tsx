@@ -1,16 +1,6 @@
 import { useI18n } from "@/lib/i18n";
-import {
-  categoryAr,
-  experienceAr,
-  projectAr,
-  projectStatusAr,
-  projectTypeAr,
-  skillGroupAr,
-  testimonialAr,
-} from "@/data/ar";
+import { categoryAr, projectAr, projectStatusAr, projectTypeAr, skillGroupAr } from "@/data/ar";
 import type { Project } from "@/data";
-import type { ExperienceItem } from "@/data";
-import type { Testimonial } from "@/data";
 
 /**
  * Content localisation: the data layer stays English, this hook returns the
@@ -31,10 +21,6 @@ export function useLocalizedContent() {
     projectType: (value: string) => (ar && projectTypeAr[value]) || value,
     projectStatus: (value?: string) => (value ? (ar && projectStatusAr[value]) || value : value),
     skillGroupTitle: (value: string) => (ar && skillGroupAr[value]) || value,
-    experience: (item: ExperienceItem): ExperienceItem =>
-      ar && experienceAr[item.company] ? { ...item, ...experienceAr[item.company] } : item,
-    testimonial: (item: Testimonial): Testimonial =>
-      ar && testimonialAr[item.name] ? { ...item, ...testimonialAr[item.name] } : item,
   };
 }
 

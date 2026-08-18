@@ -3,8 +3,7 @@ import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } fro
 import { ArrowLeft, Compass, Home, Search } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { PageShell } from "@/components/layout/PageShell";
 
 const NAV = [
   { to: "/projects", label: "Projects" },
@@ -64,176 +63,172 @@ export function NotFound() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <Navbar />
-      <main
-        ref={ref}
-        className="relative flex flex-col items-center justify-start overflow-hidden bg-background px-5 pb-12 pt-36"
-      >
-        {/* ambient layer */}
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div
-            className="absolute inset-0 opacity-[0.06]"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, var(--foreground) 1px, transparent 1px), linear-gradient(to bottom, var(--foreground) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
-              maskImage: "radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 100%)",
-            }}
-          />
-          <motion.div
-            style={{ x: backX, y: backY }}
-            className="absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2"
-          >
-            <div className="absolute inset-0 animate-blob rounded-2xl bg-[color-mix(in_oklab,var(--accent)_22%,transparent)] blur-[110px]" />
-            <div className="absolute inset-8 animate-float rounded-2xl bg-[color-mix(in_oklab,var(--accent)_12%,transparent)] blur-[90px]" />
-          </motion.div>
-        </div>
-
-        <motion.section
-          initial="hidden"
-          animate="show"
-          transition={{ staggerChildren: reduce ? 0 : 0.09, delayChildren: 0.05 }}
-          className="relative z-10 w-full max-w-2xl text-center"
-          style={{ perspective: 1000 }}
+    <PageShell
+      contained={false}
+      padded={false}
+      mainRef={ref}
+      className="relative flex flex-col items-center justify-start overflow-hidden bg-background px-5 pb-12 pt-36"
+    >
+      {/* ambient layer */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, var(--foreground) 1px, transparent 1px), linear-gradient(to bottom, var(--foreground) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+            maskImage: "radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 100%)",
+          }}
+        />
+        <motion.div
+          style={{ x: backX, y: backY }}
+          className="absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2"
         >
-          <motion.div variants={rise} transition={{ duration: 0.5, ease: [0.2, 0.7, 0.3, 1] }}>
-            <span className="chip mx-auto">
-              <Compass className="size-3.5" aria-hidden />
-              Lost signal — error 404
-            </span>
-          </motion.div>
+          <div className="absolute inset-0 animate-blob rounded-2xl bg-[color-mix(in_oklab,var(--accent)_22%,transparent)] blur-[110px]" />
+          <div className="absolute inset-8 animate-float rounded-2xl bg-[color-mix(in_oklab,var(--accent)_12%,transparent)] blur-[90px]" />
+        </motion.div>
+      </div>
 
-          {/* parallax numerals */}
+      <motion.section
+        initial="hidden"
+        animate="show"
+        transition={{ staggerChildren: reduce ? 0 : 0.09, delayChildren: 0.05 }}
+        className="relative z-10 w-full max-w-2xl text-center"
+        style={{ perspective: 1000 }}
+      >
+        <motion.div variants={rise} transition={{ duration: 0.5, ease: [0.2, 0.7, 0.3, 1] }}>
+          <span className="chip mx-auto">
+            <Compass className="size-3.5" aria-hidden />
+            Lost signal — error 404
+          </span>
+        </motion.div>
+
+        {/* parallax numerals */}
+        <motion.div
+          variants={rise}
+          transition={{ duration: 0.6, ease: [0.2, 0.7, 0.3, 1] }}
+          className="relative mt-6"
+        >
           <motion.div
-            variants={rise}
-            transition={{ duration: 0.6, ease: [0.2, 0.7, 0.3, 1] }}
-            className="relative mt-6"
+            {...(reduce
+              ? {}
+              : { style: { rotateX, rotateY, transformStyle: "preserve-3d" as const } })}
+            className="relative inline-block"
           >
-            <motion.div
-              {...(reduce
-                ? {}
-                : { style: { rotateX, rotateY, transformStyle: "preserve-3d" as const } })}
-              className="relative inline-block"
+            <motion.span
+              aria-hidden
+              style={{ x: glowX, y: glowY }}
+              className="absolute inset-0 select-none text-[clamp(6rem,26vw,14rem)] font-black leading-none tracking-tighter text-accent opacity-30 blur-2xl"
             >
-              <motion.span
-                aria-hidden
-                style={{ x: glowX, y: glowY }}
-                className="absolute inset-0 select-none text-[clamp(6rem,26vw,14rem)] font-black leading-none tracking-tighter text-accent opacity-30 blur-2xl"
-              >
+              404
+            </motion.span>
+
+            <h1 className="relative select-none text-[clamp(6rem,26vw,14rem)] font-black leading-none tracking-tighter text-foreground">
+              <span className="sr-only">404 — page not found</span>
+              <span aria-hidden className="relative inline-block">
                 404
-              </motion.span>
-
-              <h1 className="relative select-none text-[clamp(6rem,26vw,14rem)] font-black leading-none tracking-tighter text-foreground">
-                <span className="sr-only">404 — page not found</span>
-                <span aria-hidden className="relative inline-block">
-                  404
-                  {!reduce && (
-                    <>
-                      <motion.span
-                        className="absolute inset-0 text-accent mix-blend-screen"
-                        animate={{ x: [0, -3, 2, 0], opacity: [0, 0.85, 0.4, 0] }}
-                        transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 4.2 }}
-                      >
-                        404
-                      </motion.span>
-                      <motion.span
-                        className="absolute inset-0 text-[color-mix(in_oklab,var(--accent)_60%,var(--foreground))]"
-                        animate={{ x: [0, 4, -2, 0], opacity: [0, 0.5, 0.25, 0] }}
-                        transition={{
-                          duration: 0.5,
-                          repeat: Infinity,
-                          repeatDelay: 4.2,
-                          delay: 0.08,
-                        }}
-                      >
-                        404
-                      </motion.span>
-                      {/* scan sweep */}
-                      <motion.span
-                        aria-hidden
-                        className="pointer-events-none absolute inset-x-0 h-1/5 bg-[color-mix(in_oklab,var(--accent)_35%,transparent)] mix-blend-overlay"
-                        animate={{ top: ["-20%", "120%"] }}
-                        transition={{
-                          duration: 3.2,
-                          repeat: Infinity,
-                          ease: "linear",
-                          repeatDelay: 1.4,
-                        }}
-                      />
-                    </>
-                  )}
-                </span>
-              </h1>
-            </motion.div>
+                {!reduce && (
+                  <>
+                    <motion.span
+                      className="absolute inset-0 text-accent mix-blend-screen"
+                      animate={{ x: [0, -3, 2, 0], opacity: [0, 0.85, 0.4, 0] }}
+                      transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 4.2 }}
+                    >
+                      404
+                    </motion.span>
+                    <motion.span
+                      className="absolute inset-0 text-[color-mix(in_oklab,var(--accent)_60%,var(--foreground))]"
+                      animate={{ x: [0, 4, -2, 0], opacity: [0, 0.5, 0.25, 0] }}
+                      transition={{
+                        duration: 0.5,
+                        repeat: Infinity,
+                        repeatDelay: 4.2,
+                        delay: 0.08,
+                      }}
+                    >
+                      404
+                    </motion.span>
+                    {/* scan sweep */}
+                    <motion.span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-x-0 h-1/5 bg-[color-mix(in_oklab,var(--accent)_35%,transparent)] mix-blend-overlay"
+                      animate={{ top: ["-20%", "120%"] }}
+                      transition={{
+                        duration: 3.2,
+                        repeat: Infinity,
+                        ease: "linear",
+                        repeatDelay: 1.4,
+                      }}
+                    />
+                  </>
+                )}
+              </span>
+            </h1>
           </motion.div>
+        </motion.div>
 
-          <motion.h2
-            variants={rise}
-            transition={{ duration: 0.5 }}
-            className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
-          >
-            This route drifted off the map
-          </motion.h2>
+        <motion.h2
+          variants={rise}
+          transition={{ duration: 0.5 }}
+          className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+        >
+          This route drifted off the map
+        </motion.h2>
 
-          <motion.p
-            variants={rise}
-            transition={{ duration: 0.5 }}
-            className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground"
-          >
-            The page you're after doesn't exist, moved, or never shipped. Here are the paths that
-            definitely do.
-          </motion.p>
+        <motion.p
+          variants={rise}
+          transition={{ duration: 0.5 }}
+          className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground"
+        >
+          The page you're after doesn't exist, moved, or never shipped. Here are the paths that
+          definitely do.
+        </motion.p>
 
-          <motion.div
-            variants={rise}
-            transition={{ duration: 0.5 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-3"
+        <motion.div
+          variants={rise}
+          transition={{ duration: 0.5 }}
+          className="mt-8 flex flex-wrap items-center justify-center gap-3"
+        >
+          <Link to="/" className="btn-accent">
+            <Home className="size-4" aria-hidden />
+            Go home
+          </Link>
+          <Link to="/projects" className="btn-accent-outline">
+            <Search className="size-4" aria-hidden />
+            Browse projects
+          </Link>
+          <button
+            type="button"
+            onClick={() => typeof window !== "undefined" && window.history.back()}
+            className="pill-outline"
           >
-            <Link to="/" className="btn-accent">
-              <Home className="size-4" aria-hidden />
-              Go home
-            </Link>
-            <Link to="/projects" className="btn-accent-outline">
-              <Search className="size-4" aria-hidden />
-              Browse projects
-            </Link>
-            <button
-              type="button"
-              onClick={() => typeof window !== "undefined" && window.history.back()}
-              className="pill-outline"
+            <ArrowLeft className="size-4" aria-hidden />
+            Go back
+          </button>
+        </motion.div>
+
+        <motion.nav
+          variants={rise}
+          transition={{ duration: 0.5 }}
+          aria-label="Suggested pages"
+          className="mt-10 flex flex-wrap items-center justify-center gap-2"
+        >
+          {NAV.map((item, i) => (
+            <motion.div
+              key={item.to}
+              {...(reduce ? {} : { whileHover: { y: -3, scale: 1.04 } })}
+              transition={{ type: "spring", stiffness: 320, damping: 18, delay: i * 0.01 }}
             >
-              <ArrowLeft className="size-4" aria-hidden />
-              Go back
-            </button>
-          </motion.div>
-
-          <motion.nav
-            variants={rise}
-            transition={{ duration: 0.5 }}
-            aria-label="Suggested pages"
-            className="mt-10 flex flex-wrap items-center justify-center gap-2"
-          >
-            {NAV.map((item, i) => (
-              <motion.div
-                key={item.to}
-                {...(reduce ? {} : { whileHover: { y: -3, scale: 1.04 } })}
-                transition={{ type: "spring", stiffness: 320, damping: 18, delay: i * 0.01 }}
+              <Link
+                to={item.to}
+                className="nav-label inline-flex rounded-xl border border-border px-4 py-2 text-muted-foreground transition-colors hover:border-[color-mix(in_oklab,var(--accent)_50%,transparent)] hover:text-accent"
               >
-                <Link
-                  to={item.to}
-                  className="nav-label inline-flex rounded-xl border border-border px-4 py-2 text-muted-foreground transition-colors hover:border-[color-mix(in_oklab,var(--accent)_50%,transparent)] hover:text-accent"
-                >
-                  {item.label}
-                </Link>
-              </motion.div>
-            ))}
-          </motion.nav>
-        </motion.section>
-      </main>
-      <Footer />
-    </div>
+                {item.label}
+              </Link>
+            </motion.div>
+          ))}
+        </motion.nav>
+      </motion.section>
+    </PageShell>
   );
 }
-
-export default NotFound;

@@ -197,11 +197,7 @@ interface ProjectCardImageProps {
   priority?: boolean;
 }
 
-export function ProjectCardImage({
-  project,
-  compact = false,
-  priority = false,
-}: ProjectCardImageProps) {
+function ProjectCardImage({ project, compact = false, priority = false }: ProjectCardImageProps) {
   const { category } = useLocalizedContent();
   return (
     <div
@@ -231,7 +227,7 @@ interface TechStackPreviewProps {
   limit?: number;
 }
 
-export function TechStackPreview({ techs, limit = 3 }: TechStackPreviewProps) {
+function TechStackPreview({ techs, limit = 3 }: TechStackPreviewProps) {
   return (
     <div className="flex flex-wrap gap-2">
       {techs.slice(0, limit).map((tech) => (
