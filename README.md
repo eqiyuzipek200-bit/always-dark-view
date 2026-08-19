@@ -1,12 +1,12 @@
-# Always Dark View
+# Always Dark Theme
 
-clone this repo https://github.com/devmohamedsakr-prog/always-dark-view and run
+clone this https://github.com/memomando688-design/always-dark-mode-clone
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/eb0f5d29-54ee-4401-ab9a-2ac47ef4334a).
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/615e37cb-12d6-419d-bb7e-3b0b21765976).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
