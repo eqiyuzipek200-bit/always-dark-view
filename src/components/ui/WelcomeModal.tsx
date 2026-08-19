@@ -136,13 +136,30 @@ export function WelcomeModal() {
       close();
       return;
     }
+
+    // Reduced motion: step the ring/bar once per second instead of sweeping,
+    // so the countdown stays readable and announced without continuous motion.
+    if (prefersReducedMotion) {
+      let remaining = Math.ceil(left / 1000) * 1000;
+      const id = window.setInterval(() => {
+        remaining -= 1000;
+        progress.set(Math.max(0, remaining / AUTO_CLOSE_MS));
+        if (remaining <= 0) {
+          window.clearInterval(id);
+          close();
+        }
+      }, 1000);
+      return () => window.clearInterval(id);
+    }
+
     const controls = animate(progress, 0, {
       duration: left / 1000,
       ease: "linear",
       onComplete: close,
     });
     return () => controls.stop();
-  }, [open, paused, progress, close]);
+  }, [open, paused, progress, close, prefersReducedMotion]);
+
 
   if (!open) return null;
 
@@ -225,7 +242,7 @@ export function WelcomeModal() {
                 aria-hidden="true"
                 className="relative flex h-full w-full flex-col items-center justify-center gap-2"
                 initial={false}
-                animate={paused ? { scale: 1.02 } : { scale: 1 }}
+                animate={paused && !prefersReducedMotion ? { scale: 1.02 } : { scale: 1 }}
                 transition={{ duration: 0.25 }}
               >
                 <div className="relative grid aspect-square h-full max-h-[8.5rem] place-items-center">
@@ -254,21 +271,28 @@ export function WelcomeModal() {
                   </svg>
 
 
-                  {/* Center number with cross-fade on change */}
+                  {/* Center number: cross-fades normally, static under reduced motion */}
                   <div className="relative flex items-center justify-center">
-                    <AnimatePresence mode="popLayout" initial={false}>
-                      <motion.span
-                        key={paused ? "paused" : seconds}
-                        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12, scale: 0.8 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -12, scale: 0.8 }}
-                        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                        className="type-h1 absolute font-bold tabular-nums text-foreground"
-                      >
+                    {prefersReducedMotion ? (
+                      <span className="type-h1 absolute font-bold tabular-nums text-foreground">
                         {paused ? "II" : seconds}
-                      </motion.span>
-                    </AnimatePresence>
+                      </span>
+                    ) : (
+                      <AnimatePresence mode="popLayout" initial={false}>
+                        <motion.span
+                          key={paused ? "paused" : seconds}
+                          initial={{ opacity: 0, y: 12, scale: 0.8 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -12, scale: 0.8 }}
+                          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                          className="type-h1 absolute font-bold tabular-nums text-foreground"
+                        >
+                          {paused ? "II" : seconds}
+                        </motion.span>
+                      </AnimatePresence>
+                    )}
                   </div>
+
                 </div>
 
                 {/* Counter label */}
