@@ -191,6 +191,7 @@ export function WelcomeModal() {
           aria-modal="true"
           aria-labelledby="welcome-modal-title"
           aria-describedby="welcome-modal-body"
+          tabIndex={-1}
           dir={dir}
           onClick={(event) => event.stopPropagation()}
           onMouseEnter={hold}
@@ -199,8 +200,14 @@ export function WelcomeModal() {
             // Ignore the initial programmatic focus on the close button.
             if ((event.target as Node) !== closeRef.current) hold();
           }}
+          onBlurCapture={(event) => {
+            // Resume the countdown once keyboard focus leaves the dialog.
+            const next = event.relatedTarget as Node | null;
+            if (!next || !dialogRef.current?.contains(next)) release();
+          }}
           onTouchStart={hold}
           onTouchEnd={release}
+
           initial={{ opacity: 0, scale: 0.92, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 16 }}
