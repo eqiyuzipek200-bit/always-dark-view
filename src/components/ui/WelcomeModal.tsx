@@ -190,7 +190,7 @@ export function WelcomeModal() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="welcome-modal-title"
-          aria-describedby="welcome-modal-body"
+          aria-describedby="welcome-modal-body welcome-modal-desc welcome-modal-countdown"
           tabIndex={-1}
           dir={dir}
           onClick={(event) => event.stopPropagation()}
