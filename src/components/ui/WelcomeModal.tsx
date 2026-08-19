@@ -136,13 +136,30 @@ export function WelcomeModal() {
       close();
       return;
     }
+
+    // Reduced motion: step the ring/bar once per second instead of sweeping,
+    // so the countdown stays readable and announced without continuous motion.
+    if (prefersReducedMotion) {
+      let remaining = Math.ceil(left / 1000) * 1000;
+      const id = window.setInterval(() => {
+        remaining -= 1000;
+        progress.set(Math.max(0, remaining / AUTO_CLOSE_MS));
+        if (remaining <= 0) {
+          window.clearInterval(id);
+          close();
+        }
+      }, 1000);
+      return () => window.clearInterval(id);
+    }
+
     const controls = animate(progress, 0, {
       duration: left / 1000,
       ease: "linear",
       onComplete: close,
     });
     return () => controls.stop();
-  }, [open, paused, progress, close]);
+  }, [open, paused, progress, close, prefersReducedMotion]);
+
 
   if (!open) return null;
 
