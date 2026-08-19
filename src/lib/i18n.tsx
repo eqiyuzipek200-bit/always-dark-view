@@ -130,6 +130,10 @@ const t: Dict = {
   "welcome.autoclose": { en: "Closing in {s}s", ar: "الإغلاق بعد {s} ثانية" },
   "welcome.paused": { en: "Paused", ar: "متوقف مؤقتاً" },
   "welcome.autocloseLabel": { en: "Auto close", ar: "إغلاق تلقائي" },
+  "welcome.description": {
+    en: "This dialog closes automatically in a few seconds. Hover, focus, or touch inside to pause.",
+    ar: "يُغلق هذا الحوار تلقائياً خلال ثوانٍ. مرّر المؤشر أو ركّز أو المس داخله للإيقاف المؤقت.",
+  },
 
 
 
