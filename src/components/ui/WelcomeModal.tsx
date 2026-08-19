@@ -242,7 +242,7 @@ export function WelcomeModal() {
                 aria-hidden="true"
                 className="relative flex h-full w-full flex-col items-center justify-center gap-2"
                 initial={false}
-                animate={paused ? { scale: 1.02 } : { scale: 1 }}
+                animate={paused && !prefersReducedMotion ? { scale: 1.02 } : { scale: 1 }}
                 transition={{ duration: 0.25 }}
               >
                 <div className="relative grid aspect-square h-full max-h-[8.5rem] place-items-center">
